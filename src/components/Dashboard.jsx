@@ -1,10 +1,9 @@
-import React from 'react'
-import Navbar from './Navbar'
+import ContainerStorage from './ContainerStorage'
 
 const Dashboard = () => {
   return (
     <>
-      <Navbar />
+      <ContainerStorage />
     </>
   )
 }
