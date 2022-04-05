@@ -1,11 +1,12 @@
-import ContainerStorage from './ContainerStorage'
+import ContainerStorage 
+from "./ContainerStorage";
 
 const Dashboard = () => {
   return (
     <>
       <ContainerStorage />
     </>
-  )
-}
+  );
+};
 
-export default Dashboard
+export default Dashboard;
