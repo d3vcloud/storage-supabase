@@ -34,7 +34,6 @@ const useFile = (bucketId) => {
         throw new Error("No file selected");
       }
       const file = e.target.files[0];
-      // console.log(file);
       const fileName = file.name;
       setFileData({
         filePath: fileName,
@@ -52,7 +51,6 @@ const useFile = (bucketId) => {
     const { name, type: mimetype, lastModified: id } = file;
     setFiles((prevFiles) => [...prevFiles, { id, name, mimetype }]);
     setFileData(initialState);
-    // console.log(data)
   };
 
   return {

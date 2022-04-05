@@ -1,5 +1,16 @@
 import { supabase } from "../api/config";
 
+/* List all buckets from supabase */
+export const listBuckets = async () => {
+  try {
+    const { data, error } = await supabase.storage.listBuckets();
+    if (error) throw new Error("No buckets found");
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
 /* Create a bucket on supabase */
 export const createBucket = async ({ bucketName, isPublic }) => {
   try {
@@ -13,11 +24,11 @@ export const createBucket = async ({ bucketName, isPublic }) => {
   }
 };
 
-/* List all buckets from supabase */
-export const listBuckets = async () => {
+/* Get details of bucket */
+export const getBucketDetails = async (bucketName) => {
   try {
-    const { data, error } = await supabase.storage.listBuckets();
-    if (error) throw new Error("No buckets found");
+    const { data, error } = await supabase.storage.getBucket(bucketName);
+    if (error) throw new Error("No bucket found");
     return data;
   } catch (error) {
     console.error(error);
@@ -28,6 +39,19 @@ export const listBuckets = async () => {
 export const listFilesFromBucket = async (bucket) => {
   try {
     const { data, error } = await supabase.storage.from(bucket).list();
+    if (error) throw new Error("No files found");
+    return data;
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+/* Upload file to bucket */
+export const uploadFileToBucket = async (bucketId, path, file) => {
+  try {
+    const { data, error } = await supabase.storage
+      .from(bucketId)
+      .upload(path, file);
     if (error) throw new Error("No files found");
     return data;
   } catch (error) {
@@ -54,30 +78,6 @@ export const getSignedUrl = async (bucketId, path) => {
       .createSignedUrl(path, 80);
     if (error) throw new Error("No files found");
     return signedURL;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-/* Upload file to bucket */
-export const uploadFileToBucket = async (bucketId, path, file) => {
-  try {
-    const { data, error } = await supabase.storage
-      .from(bucketId)
-      .upload(path, file);
-    if (error) throw new Error("No files found");
-    return data;
-  } catch (error) {
-    console.error(error);
-  }
-};
-
-/* Get details of bucket */
-export const getBucketDetails = async (bucketName) => {
-  try {
-    const { data, error } = await supabase.storage.getBucket(bucketName);
-    if (error) throw new Error("No bucket found");
-    return data;
   } catch (error) {
     console.error(error);
   }
