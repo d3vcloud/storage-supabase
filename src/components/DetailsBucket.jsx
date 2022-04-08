@@ -6,7 +6,7 @@ import ModalUpload from "./Modals/ModalUpload";
 import ListFiles from "./ListFiles";
 import useFile from "../hooks/useFile";
 
-const DetailsFolder = () => {
+const DetailsBucket = () => {
   const {bucketId} = useParams();
   const {isOpen, onOpen, onClose} = useDisclosure();
   const {files, uploadFile, saveFile} = useFile(bucketId);
@@ -37,4 +37,4 @@ const DetailsFolder = () => {
   );
 };
 
-export default DetailsFolder;
+export default DetailsBucket;

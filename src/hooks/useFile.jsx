@@ -12,12 +12,12 @@ const useFile = (bucketId) => {
 
   useEffect(() => {
     listFilesFromBucket(bucketId).then((response) => {
-      const formattedFiles = response.map((bucket) => {
+      const formattedFiles = response.map((file) => {
         const {
           id,
           metadata: { mimetype },
           name,
-        } = bucket;
+        } = file;
         return {
           id,
           mimetype,

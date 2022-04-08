@@ -20,7 +20,6 @@ export const AuthProvider = ({ children }) => {
       const user = supabase.auth.user();
       if (user) {
         setUser(user);
-        // console.log(user);
         navigate("/dashboard", { replace: true });
       } else {
         navigate("/login", { replace: true });
